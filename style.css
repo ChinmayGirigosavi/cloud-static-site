@@ -1,0 +1,109 @@
+/* Custom CSS Variables & Dark/Light Theme Support */
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --text-color: #333333;
+    --bg-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    --card-bg: rgba(255, 255, 255, 0.9);
+}
+
+/* Base Body Styles with Dynamic Animated Gradient Background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+/* Glassmorphism Card Container */
+.card {
+    background: var(--card-bg);
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    max-width: 500px;
+    width: 85%;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 1.2s ease-out;
+}
+
+/* Dynamic Hover Elevation Effect */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Heading Styling with Subtle Gradient Text */
+h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 3px;
+    background: var(--accent-color);
+    margin: 8px auto 0;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.card:hover h1::after {
+    width: 100%;
+}
+
+/* Paragraph Text Styling */
+p {
+    color: #555555;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Keyframe Animations */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Scaling for Smaller Mobile Displays */
+@media (max-width: 480px) {
+    body {
+        padding: 20px;
+    }
+    .card {
+        padding: 25px 15px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    p {
+        font-size: 0.95rem;
+    }
+}
